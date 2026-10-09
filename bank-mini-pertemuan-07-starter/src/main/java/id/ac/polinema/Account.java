@@ -31,15 +31,21 @@ public class Account {
         return true;
     }
 
+    // Method withdraw dipicu untuk memanggil canWithdraw()
     public boolean withdraw(double amount) {
-        if (amount <= 0 || amount > balance) {
+        if (!canWithdraw(amount)) {
             return false;
         }
         balance -= amount;
         return true;
     }
 
+    // Method baru bertanda protected sebagai titik override bagi subclass
+    protected boolean canWithdraw(double amount) {
+        return amount > 0 && amount <= balance;
+    }
+
     public void printInfo() {
-        System.out.println(accountNumber + " - " + owner.getName() + " - balance: " + balance);
+        System.out.println(accountNumber + " " + owner.getName() + " balance: " + balance);
     }
 }
