@@ -31,7 +31,16 @@ public class Account {
         return true;
     }
 
-    // Method withdraw dipicu untuk memanggil canWithdraw()
+    public boolean deposit(double amount, String note) {
+        // Memanggil method deposit(double) yang sudah ada terlebih dahulu
+        if (!deposit(amount)) {
+            return false;
+        }
+        // Jika penyetoran berhasil, cetak catatan transaksi
+        System.out.println(accountNumber + " deposit note: " + note);
+        return true;
+    }
+
     public boolean withdraw(double amount) {
         if (!canWithdraw(amount)) {
             return false;
@@ -40,7 +49,6 @@ public class Account {
         return true;
     }
 
-    // Method baru bertanda protected sebagai titik override bagi subclass
     protected boolean canWithdraw(double amount) {
         return amount > 0 && amount <= balance;
     }
